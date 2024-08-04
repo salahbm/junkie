@@ -14,5 +14,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  firebase_auth: ^4.16.0
+  cloud_firestore: ^4.9.2
+
 flutter:
   uses-material-design: true
