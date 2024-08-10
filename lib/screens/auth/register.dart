@@ -2,18 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:junkie/components/buttons.dart';
 import 'package:junkie/components/textfield.dart';
 
-class LoginPage extends StatefulWidget {
+class RegisterPage extends StatefulWidget {
   final void Function() onPressed;
-  const LoginPage({super.key, required this.onPressed});
+  const RegisterPage({super.key, required this.onPressed});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +25,11 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.lock_open_rounded,
+              Icon(Icons.person_add_alt_1_rounded,
                   size: 100,
                   color: Theme.of(context).colorScheme.inversePrimary),
               const SizedBox(height: 25),
-              Text('Food Delivery App',
+              Text('Create Your Account',
                   style: TextStyle(
                       fontSize: 16,
                       color: Theme.of(context).colorScheme.inversePrimary),
@@ -50,30 +51,45 @@ class _LoginPageState extends State<LoginPage> {
                       hintText: 'Password',
                       obscureText: true,
                     ),
+                    const SizedBox(height: 15),
+                    Textfield(
+                      controller: _confirmPasswordController,
+                      hintText: 'Confirm Password',
+                      obscureText: true,
+                    ),
                     const SizedBox(height: 45),
                     Buttons(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          // TODO: Implement login logic
-                          Navigator.pushNamed(context, '/home');
+                          if (_passwordController.text ==
+                              _confirmPasswordController.text) {
+                            // TODO: Implement registration logic
+                            Navigator.pushNamed(context, '/home');
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text('Passwords do not match!'),
+                              ),
+                            );
+                          }
                         }
                       },
-                      text: 'Login',
+                      text: 'Sign Up',
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('Don\'t have an account?',
+                        Text('Already have an account?',
                             style: TextStyle(
                                 color: Theme.of(context).colorScheme.primary)),
                         TextButton(
                             onPressed: () {
-                              Navigator.pushNamed(context, '/signup');
+                              Navigator.pushNamed(context, '/login');
                             },
                             child: GestureDetector(
                               onTap: widget.onPressed,
                               child: Text(
-                                'Sign up',
+                                'Login',
                                 style: TextStyle(
                                     color: Theme.of(context)
                                         .colorScheme
