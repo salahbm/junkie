@@ -12,10 +12,10 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-      ),
-      drawer: const CustomDrawer(),
-    );
+        appBar: AppBar(
+          title: const Text('Home'),
+        ),
+        drawer: const CustomDrawer(),
+        backgroundColor: Theme.of(context).colorScheme.surface);
   }
 }
