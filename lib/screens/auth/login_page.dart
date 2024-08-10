@@ -68,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
                                 color: Theme.of(context).colorScheme.primary)),
                         TextButton(
                             onPressed: () {
-                              Navigator.pushNamed(context, '/signup');
+                              Navigator.pushNamed(context, '/register');
                             },
                             child: GestureDetector(
                               onTap: widget.onPressed,
