@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:junkie/components/buttons.dart';
 import 'package:junkie/components/textfield.dart';
+import 'package:junkie/screens/home/home.dart';
 
 class LoginPage extends StatefulWidget {
   final void Function() onPressed;
@@ -14,6 +15,16 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
+
+  // Login Method
+  void login() {
+    //  fill up the form
+
+    // if all fields are valid and authenticated
+    // navigate to home page
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const Home()));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,8 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                     Buttons(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          // TODO: Implement login logic
-                          Navigator.pushNamed(context, '/home');
+                          login();
                         }
                       },
                       text: 'Login',
