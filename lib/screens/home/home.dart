@@ -15,7 +15,7 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         title: const Text('Home'),
       ),
-      drawer: CustomDrawer(),
+      drawer: const CustomDrawer(),
     );
   }
 }
