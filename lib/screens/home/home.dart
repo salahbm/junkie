@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:junkie/components/curr_location.dart';
 import 'package:junkie/components/drawer.dart';
 import 'package:junkie/components/silver_bar.dart';
 
@@ -26,9 +27,9 @@ class _HomeState extends State<Home> {
                       indent: 25,
                       endIndent: 25,
                       color: Theme.of(context).colorScheme.tertiary,
-                    )
+                    ),
                     // my curr location
-
+                    const CurrLocation(),
                     // description box
                   ],
                 ))
