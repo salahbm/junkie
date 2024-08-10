@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:junkie/components/curr_location.dart';
+import 'package:junkie/screens/home/curr_location.dart';
 import 'package:junkie/components/drawer.dart';
 import 'package:junkie/components/silver_bar.dart';
+import 'package:junkie/screens/home/description_box.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -19,7 +20,7 @@ class _HomeState extends State<Home> {
         body: NestedScrollView(
           headerSliverBuilder: (context, innerBoxIsScrolled) => [
             SilverBar(
-                title: Text('Home'),
+                title: const Text('Junkie'),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -31,6 +32,7 @@ class _HomeState extends State<Home> {
                     // my curr location
                     const CurrLocation(),
                     // description box
+                    const DescriptionBox(),
                   ],
                 ))
           ],

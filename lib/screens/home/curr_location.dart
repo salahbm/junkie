@@ -7,7 +7,9 @@ class CurrLocation extends StatelessWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Your Location'),
+        title: Text('Locations',
+            style:
+                TextStyle(color: Theme.of(context).colorScheme.inversePrimary)),
         content: const TextField(
           decoration: InputDecoration(hintText: 'Search address...'),
         ),
@@ -35,21 +37,25 @@ class CurrLocation extends StatelessWidget {
     return Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            Icon(Icons.location_on_outlined,
+                size: 25, color: Theme.of(context).colorScheme.primary),
             Text('Delivery Now',
-                style: TextStyle(
-                    color: Theme.of(context).colorScheme.inversePrimary)),
+                style: TextStyle(color: Theme.of(context).colorScheme.primary)),
+            const SizedBox(height: 10),
             GestureDetector(
               onTap: () => openLocation(context),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Current Location',
+                  Text('Chicago, IL',
                       style: TextStyle(
-                          color: Theme.of(context).colorScheme.primary)),
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).colorScheme.inversePrimary)),
                   // drop down menu
-                  Icon(Icons.keyboard_arrow_down,
-                      color: Theme.of(context).colorScheme.primary)
+                  Icon(Icons.search,
+                      color: Theme.of(context).colorScheme.inversePrimary)
                 ],
               ),
             )
