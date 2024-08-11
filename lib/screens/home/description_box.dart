@@ -13,7 +13,7 @@ class DescriptionBox extends StatelessWidget {
         horizontal: 16.0,
         vertical: 8.0,
       ),
-      margin: const EdgeInsets.all(16.0),
+      margin: const EdgeInsets.only(left: 16, right: 16, bottom: 56),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
