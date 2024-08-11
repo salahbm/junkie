@@ -161,7 +161,7 @@ class Restaurant extends ChangeNotifier {
     // Desserts
     Food(
         name: 'Chocolate Cake',
-        imagePath: 'assets/food/desserts/chocolate_cake.png',
+        imagePath: 'assets/food/desserts/choco.png',
         description:
             'A decadent slice of chocolate cake topped with rich chocolate ganache and a fresh strawberry.',
         price: 3.99,
@@ -177,7 +177,7 @@ class Restaurant extends ChangeNotifier {
         addOns: []),
     Food(
         name: 'Apple Pie',
-        imagePath: 'assets/food/desserts/pumpkin_pie.png',
+        imagePath: 'assets/food/desserts/pumkin_pie.png',
         description:
             'A classic slice of apple pie with a flaky, golden crust and a scoop of vanilla ice cream.',
         price: 3.99,
@@ -186,7 +186,7 @@ class Restaurant extends ChangeNotifier {
 
     Food(
         name: 'Tiramisu',
-        imagePath: 'assets/food/desserts/blueberry_foam.png',
+        imagePath: 'assets/food/desserts/bluberry_foam.png',
         description:
             'A classic Italian dessert with layers of coffee-soaked ladyfingers, mascarpone cheese, and cocoa powder.',
         price: 4.99,

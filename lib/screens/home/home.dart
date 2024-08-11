@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:junkie/models/food.dart';
 import 'package:junkie/models/restaurant.dart';
+import 'package:junkie/screens/food/index.dart';
 import 'package:junkie/screens/home/curr_location.dart';
 import 'package:junkie/components/drawer.dart';
 import 'package:junkie/components/silver_bar.dart';
@@ -41,25 +42,30 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     return FoodCategory.values.map((category) {
       List<Food> categoryMenu = _filterMenuByCategory(category, fullMenu);
 
-      return Column(
-        children: [
-          Text(
-            category.toString().split('.').last, // Display category name
-            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-          ListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: categoryMenu.length,
-            padding: EdgeInsets.zero,
-            itemBuilder: (context, index) {
-              return FoodTile(
-                food: categoryMenu[index],
-                onTap: () {},
-              );
-            },
-          ),
-        ],
+      return SingleChildScrollView(
+        child: Column(
+          children: [
+            // You can add other widgets here if needed, e.g., a header
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: categoryMenu.length,
+              padding: EdgeInsets.zero,
+              itemBuilder: (context, index) {
+                return FoodTile(
+                  food: categoryMenu[index],
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                FoodPage(food: categoryMenu[index])));
+                  },
+                );
+              },
+            ),
+          ],
+        ),
       );
     }).toList();
   }
