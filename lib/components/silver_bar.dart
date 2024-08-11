@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:junkie/screens/cart/index.dart';
 
 class SilverBar extends StatelessWidget {
   final Widget child;
@@ -14,7 +15,10 @@ class SilverBar extends StatelessWidget {
       pinned: true,
       actions: [
         IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => CartScreen()));
+            },
             icon: Icon(Icons.shopping_cart_checkout,
                 color: Theme.of(context).colorScheme.inversePrimary))
       ],

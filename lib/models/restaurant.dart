@@ -233,6 +233,7 @@ class Restaurant extends ChangeNotifier {
   // GETTERS
 
   List<Food> get menu => _menu;
+  List<CartItem> get cart => _cart;
 
   // METHODS
 
@@ -244,6 +245,7 @@ class Restaurant extends ChangeNotifier {
     CartItem? cartItem = _cart.firstWhereOrNull((item) {
       bool isSameFood = item.food.name == food.name;
       bool isSameAddOns = ListEquality().equals(item.selectedAddOns, addOns);
+      notifyListeners();
       return isSameFood && isSameAddOns;
     });
 
@@ -267,6 +269,12 @@ class Restaurant extends ChangeNotifier {
       }
       notifyListeners();
     }
+  }
+
+  // remove food from cart with all quantity
+  void removeFood(Food food) {
+    _cart.removeWhere((item) => item.food.name == food.name);
+    notifyListeners();
   }
 
   // total price
