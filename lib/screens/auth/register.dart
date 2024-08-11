@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:junkie/components/buttons.dart';
 import 'package:junkie/components/textfield.dart';
+import 'package:junkie/screens/home/home.dart';
 
 class RegisterPage extends StatefulWidget {
   final void Function() onPressed;
@@ -63,8 +64,10 @@ class _RegisterPageState extends State<RegisterPage> {
                         if (_formKey.currentState!.validate()) {
                           if (_passwordController.text ==
                               _confirmPasswordController.text) {
-                            // TODO: Implement registration logic
-                            Navigator.pushNamed(context, '/home');
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const Home()));
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(

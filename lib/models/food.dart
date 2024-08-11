@@ -6,8 +6,14 @@ class Food {
   final FoodCategory category;
   final List<AddOn> addOns;
 
-  Food(this.name, this.imagePath, this.description, this.price, this.category,
-      this.addOns);
+  Food({
+    required this.name,
+    required this.imagePath,
+    required this.description,
+    required this.price,
+    required this.category,
+    required this.addOns,
+  });
 }
 
 // Food categories
@@ -18,5 +24,5 @@ enum FoodCategory { burgers, sides, drinks, desserts, salads, soup, specials }
 class AddOn {
   final String name;
   final double price;
-  AddOn(this.name, this.price);
+  AddOn({required this.name, required this.price});
 }
