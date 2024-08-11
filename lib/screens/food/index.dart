@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:junkie/components/buttons.dart';
 import 'package:junkie/models/food.dart';
+import 'package:junkie/models/restaurant.dart';
+import 'package:provider/provider.dart';
 
 class FoodPage extends StatefulWidget {
   final Food food;
@@ -18,9 +21,25 @@ class FoodPage extends StatefulWidget {
 }
 
 class _FoodPage extends State<FoodPage> {
+  //  Add logic to add food to cart
+  void addToCart(Food food, Map<AddOn, bool> selectedAddOns) {
+    List<AddOn> addOns = [];
+
+    for (AddOn addOn in widget.food.addOns) {
+      if (selectedAddOns[addOn] == true) {
+        addOns.add(addOn);
+      }
+    }
+
+    context.read<Restaurant>().addFood(food, addOns);
+
+    Navigator.pop(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       body: Stack(
         children: [
           Positioned(
@@ -42,9 +61,9 @@ class _FoodPage extends State<FoodPage> {
             child: SingleChildScrollView(
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Theme.of(context).colorScheme.secondary,
                   borderRadius:
-                      const BorderRadius.vertical(top: Radius.circular(30)),
+                      const BorderRadius.vertical(top: Radius.circular(12)),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0),
@@ -126,21 +145,11 @@ class _FoodPage extends State<FoodPage> {
                       const SizedBox(height: 24),
                     ],
                     Center(
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 16,
-                            horizontal: 32,
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                        ),
-                        child: const Text(
-                          'Add to Cart',
-                          style: TextStyle(fontSize: 18),
-                        ),
+                      child: Buttons(
+                        onPressed: () {
+                          addToCart(widget.food, widget.selectedAddOns);
+                        },
+                        text: 'Add to cart',
                       ),
                     ),
                     const SizedBox(height: 24),
@@ -158,7 +167,7 @@ class _FoodPage extends State<FoodPage> {
               },
               child: Container(
                 padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.black54,
                   shape: BoxShape.circle,
                 ),

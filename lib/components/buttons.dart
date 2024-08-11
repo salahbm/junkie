@@ -13,7 +13,7 @@ class Buttons extends StatelessWidget {
         alignment: Alignment.center,
         height: 50,
         decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.secondary,
+            color: Theme.of(context).colorScheme.tertiary,
             borderRadius: BorderRadius.circular(10)),
         child: Text(
           text,

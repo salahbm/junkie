@@ -1,4 +1,6 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:junkie/models/cart.dart';
 import 'package:junkie/models/food.dart';
 
 class Restaurant extends ChangeNotifier {
@@ -234,34 +236,65 @@ class Restaurant extends ChangeNotifier {
 
   // METHODS
 
-  void addFood(Food food) {
-    _menu.add(food);
+  // user cart
+  List<CartItem> _cart = [];
+
+  void addFood(Food food, List<AddOn> addOns) {
+    // Finding the cart item that matches the food name and selected add-ons
+    CartItem? cartItem = _cart.firstWhereOrNull((item) {
+      bool isSameFood = item.food.name == food.name;
+      bool isSameAddOns = ListEquality().equals(item.selectedAddOns, addOns);
+      return isSameFood && isSameAddOns;
+    });
+
+    // If the cart item is found, increase the quantity, otherwise add a new item to the cart
+    if (cartItem != null) {
+      cartItem.quantity++;
+    } else {
+      _cart.add(CartItem(food: food, selectedAddOns: addOns));
+      notifyListeners();
+    }
   }
 
-  void removeFood(Food food) {
-    _menu.remove(food);
+  void removeFromCart(CartItem cartItem) {
+    int cartIndex = _cart.indexOf(cartItem);
+
+    if (cartIndex != -1) {
+      if (_cart[cartIndex].quantity > 1) {
+        _cart[cartIndex].quantity--;
+      } else {
+        _cart.removeAt(cartIndex);
+      }
+      notifyListeners();
+    }
   }
 
   // total price
-  double get totalPrice {
-    double total = 0.0;
-    for (var food in _menu) {
-      total += food.price;
+  double totalPrice() {
+    double total = 0;
+    for (CartItem cartItem in _cart) {
+      double itemTotal = cartItem.food.price;
+      for (AddOn addOn in cartItem.selectedAddOns) {
+        itemTotal += addOn.price;
+      }
+      total += itemTotal * cartItem.quantity;
     }
     return total;
   }
 
   // total items
-  // int get totalItems {
-  //   int total = 0;
-  //   for (var food in _menu) {
-  //     total += ;
-  //   }
-  //   return total;
-  // }
+  int totalItems() {
+    int total = 0;
+    for (CartItem cartItem in _cart) {
+      total += cartItem.quantity;
+    }
+    return total;
+  }
+
 // clear cart
   void clearCart() {
-    _menu.clear();
+    _cart.clear();
+    notifyListeners();
   }
 
   // HELPER METHODS
