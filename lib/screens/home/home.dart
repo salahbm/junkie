@@ -30,7 +30,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
         drawer: const CustomDrawer(),
-        backgroundColor: Theme.of(context).colorScheme.surface,
         body: NestedScrollView(
           headerSliverBuilder: (context, innerBoxIsScrolled) => [
             SilverBar(
@@ -51,7 +50,29 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   ],
                 ))
           ],
-          body: const Center(child: Text('Home')),
+          body: TabBarView(
+            controller: _tabController,
+            children: [
+              // home
+              ListView.builder(
+                itemCount: 10,
+                itemBuilder: (context, index) => Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Card(
+                    child: ListTile(
+                      title: Text('Item $index'),
+                    ),
+                  ),
+                ),
+              ),
+              // settings
+              Icon(Icons.settings,
+                  color: Theme.of(context).colorScheme.inversePrimary),
+              // profile
+              Icon(Icons.person,
+                  color: Theme.of(context).colorScheme.inversePrimary),
+            ],
+          ),
         ));
   }
 }

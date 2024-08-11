@@ -12,10 +12,9 @@ class Tabs extends StatelessWidget {
       tabs: [
         Icon(Icons.home_filled,
             color: Theme.of(context).colorScheme.inversePrimary),
-        Icon(Icons.favorite_border,
+        Icon(Icons.settings,
             color: Theme.of(context).colorScheme.inversePrimary),
-        Icon(Icons.person_outline,
-            color: Theme.of(context).colorScheme.inversePrimary),
+        Icon(Icons.person, color: Theme.of(context).colorScheme.inversePrimary),
       ],
     );
   }
