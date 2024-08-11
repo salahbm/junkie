@@ -16,8 +16,13 @@ class SilverBar extends StatelessWidget {
           IconButton(
               onPressed: () {},
               icon: Icon(Icons.shopping_cart_checkout,
-                  color: Theme.of(context).colorScheme.primary))
+                  color: Theme.of(context).colorScheme.inversePrimary))
         ],
+        leading: IconButton(
+          onPressed: () => Scaffold.of(context).openDrawer(),
+          icon: Icon(Icons.menu,
+              color: Theme.of(context).colorScheme.inversePrimary),
+        ),
         backgroundColor: Theme.of(context).colorScheme.surface,
         flexibleSpace: FlexibleSpaceBar(background: child),
         title: title);
